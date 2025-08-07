@@ -55,11 +55,15 @@ const Register = () => {
         placeholder="Phone Number"
         className="input mb-4"
         value={phoneNo}
-        onChange={(e) => setPhoneNo(e.target.value)}
+        onChange={(e) => {
+          const value = e.target.value;
+          if (/^\d{0,10}$/.test(value)) setPhoneNo(value);
+        }}
         required
-        pattern="[0-9]{10}"
-        title="Enter a 10-digit phone number"
+        pattern="\d{10}"
+        title="Phone number must be exactly 10 digits"
       />
+
       <input
         type="password"
         placeholder="Password"
