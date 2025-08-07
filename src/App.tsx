@@ -1,24 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, Navigate } from "react-router-dom";
+import Login from "./components/Auth/Login";
+import Register from "./components/Auth/Register";
+import Sidebar from "./components/Layout/Sidebar";
+import CreateBlog from "./components/Blog/CreateBlog";
+import Feed from "./Pages/Feed";
+import MyBlogs from "./Pages/MyBlogs";
+import AllBlogs from "./Pages/AllBlogs";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex">
+      <Sidebar />
+      <main className="ml-64 w-full p-6">
+        <Routes>
+          <Route path="/" element={<Navigate to="/login" />} />
+
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/create-blog" element={<CreateBlog />} />
+          <Route path="/feed" element={<Feed />} />
+          <Route path="/my-blogs" element={<MyBlogs />} />
+          <Route path="/blogSpot" element={<AllBlogs />} />
+        </Routes>
+      </main>
     </div>
   );
 }
