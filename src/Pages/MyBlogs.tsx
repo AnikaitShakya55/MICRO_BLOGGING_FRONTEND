@@ -12,9 +12,8 @@ const MyBlogs = () => {
 
   useEffect(() => {
     const fetchBlogs = () => {
-      useGetMyBlogs.fetchGetData(true).then((data) => {
+      useGetMyBlogs.fetchGetData().then((data) => {
         setBlogs(data.data);
-        console.log("fetched my blogs", data);
       });
     };
     if (!loggedInToken) {
@@ -34,6 +33,8 @@ const MyBlogs = () => {
           <small>{new Date(blog.createdAt).toLocaleString()}</small>
         </div>
       ))}
+
+      {blogs.length === 0 && <p>Blogs are not present</p>}
     </div>
   );
 };

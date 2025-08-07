@@ -1,1 +1,44 @@
-step 1 - 
+# 📝 Microblogging Platform (Blog App)
+
+A full-stack microblogging application where users can register, log in, create blogs, follow/unfollow users, see blogs according to following. Built using **React**, **Node.js**, **Express**, and **MongoDB**.
+
+---
+
+## 🚀 Features
+
+- 🔐 JWT-based User Authentication (Register/Login)
+- 📝 Create, Edit, Delete Blogs
+- 🧑‍🤝‍🧑 Follow/Unfollow Users
+- 📜 Personalized Feed
+- 🔔 Snackbar Notifications
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+- React + TypeScript
+- Redux Toolkit (for snackbar state)
+- React Router DOM
+- Tailwind CSS
+
+### Backend
+
+- Node.js + Express.js
+- MongoDB + Mongoose
+- JWT (Authentication)
+- bcrypt (Password Hashing)
+- CORS, dotenv 
+
+---
+
+
+
+## ⚙️ Setup Instructions
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/blogging-app.git
+cd blogging-a

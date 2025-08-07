@@ -28,7 +28,6 @@ const useGetFetch = (url: string) => {
       );
 
       const resData: any = await res.json();
-      console.log(resData);
       if (res.status === 200) {
         if (snackbarExpected)
           dispatch(

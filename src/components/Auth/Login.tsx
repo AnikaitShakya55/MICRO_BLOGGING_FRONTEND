@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import usePostFetch from "../../hooks/usePostFetch";
+import { CircularProgress } from "@mui/material";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -20,7 +21,6 @@ const Login = () => {
     e.preventDefault();
 
     useFetchLogin.postData({ email, password }, true).then((data) => {
-      console.log("data", data);
       localStorage.setItem("token", data.token);
       localStorage.setItem("loggedInUser", JSON.stringify(data.user));
       navigate("/blogSpot");
@@ -48,7 +48,7 @@ const Login = () => {
         onChange={(e) => setPassword(e.target.value)}
       />
       <button type="submit" className="btn">
-        Login
+        {useFetchLogin.postLoader ? <CircularProgress size={25} /> : "Login"}
       </button>
     </form>
   );

@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import usePostFetch from "../../hooks/usePostFetch";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -7,10 +8,15 @@ const Sidebar = () => {
     localStorage.getItem("loggedInUser") || "{}" || "undefined"
   );
 
+  const logoutUser = usePostFetch("/logout");
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("loggedInUser");
     navigate("/login");
+    logoutUser.postData({}, true).then((data) => {
+      navigate("/login");
+    });
   };
 
   return (

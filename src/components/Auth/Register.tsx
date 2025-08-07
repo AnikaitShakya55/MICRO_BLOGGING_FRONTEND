@@ -22,7 +22,6 @@ const Register = () => {
     };
 
     registerPostFetch.postData(obj, true).then((data) => {
-      console.log("register data", data);
       localStorage.setItem("token", JSON.stringify(data.token));
       localStorage.setItem("loggedInUser", JSON.stringify(data.user));
       navigate("/");

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Blog } from "../types";
 import useGetFetch from "../hooks/useGetFetch";
 import { useNavigate } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
 
 const Feed = () => {
   const navigate = useNavigate();
@@ -11,8 +12,7 @@ const Feed = () => {
   // API
   useEffect(() => {
     const fetchFeed = () => {
-      useGetFeed.fetchGetData(true).then((data) => {
-        console.log("feed data", data);
+      useGetFeed.fetchGetData().then((data) => {
         setBlogs(data.data);
       });
     };
@@ -26,16 +26,19 @@ const Feed = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl mb-4">Your Feed</h1>
-      {blogs.map((blog) => (
-        <div key={blog._id} className="border p-4 mb-2 rounded">
-          <p>{blog.content}</p>
-          <small>
-            Posted by {blog.user?.username} on{" "}
-            {new Date(blog.createdAt).toLocaleString()}
-          </small>
-        </div>
-      ))}
+      <h1 className="text-2xl mb-4">My Feed</h1>
+      {!useGetFeed.getLoader &&
+        blogs.map((blog) => (
+          <div key={blog._id} className="border p-4 mb-2 rounded">
+            <p>{blog.content}</p>
+            <small>
+              Posted by {blog.user?.username} on{" "}
+              {new Date(blog.createdAt).toLocaleString()}
+            </small>
+          </div>
+        ))}
+      {useGetFeed.getLoader && <CircularProgress size={25} />}
+      {blogs.length === 0 && <p>Feeds are not available</p>}
     </div>
   );
 };

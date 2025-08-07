@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useGetFetch from "../hooks/useGetFetch";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -12,6 +12,7 @@ interface Blog {
     username: string;
     email: string;
     followers: string[];
+    following: string[];
   };
   createdAt: string;
 }
@@ -33,15 +34,15 @@ const AllBlogs = () => {
       navigate("/login");
     }
 
-    if (loggedInUser) {
+    if (loggedInToken !== null) {
       const fetchBlogs = () => {
-        fetchAllBlogs.fetchGetData(true).then((data) => {
+        fetchAllBlogs.fetchGetData().then((data) => {
           setBlogs(data.data);
         });
       };
 
       const fetchCurrentUser = async () => {
-        fetchActiveUser.fetchGetData(true).then((data) => {
+        fetchActiveUser.fetchGetData().then((data) => {
           localStorage.setItem("loggedInUser", JSON.stringify(data.data));
           setFollowingIds(data.data.following);
         });
@@ -134,7 +135,7 @@ const AllBlogs = () => {
                   </button>
 
                   {/* Follows You Label */}
-                  {blog.user.followers?.includes(loggedInUser._id) && (
+                  {blog.user.following.includes(loggedInUser._id) && (
                     <span className="text-xs text-gray-400 mt-1">
                       Follows you
                     </span>

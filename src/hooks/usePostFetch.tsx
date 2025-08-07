@@ -19,7 +19,6 @@ const usePostFetch = (url: string) => {
       setPostLoader(true);
       setPostError(null);
 
-      console.log("process.env.REACT_APP_BACKEND_URL_ENDPOINT", data);
       const response = await fetch(
         `${process.env.REACT_APP_BACKEND_URL_ENDPOINT}${url}`,
         {
